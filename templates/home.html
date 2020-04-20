@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sentiment Analysis App</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+	<link rel="stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/main.css') }}">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark ">
+        <div class="mx-auto" style="width: 200px;">
+			<p class="text-white bg-dark">Sentiment Analysis App</p>
+		</div>
+    </nav>
+	
+	<div class="jumbotron d-flex align-items-center min-vh-100">
+		<form method = "POST" action="/predict" class="main-form needs-validation justify-content-center" novalidate>
+			<div class="form-group">
+				<label for="comment">Write Your Furniture Product Review below</label>
+				<textarea class="form-control" rows="5" name="review_text" required></textarea>
+				<div class="invalid-feedback">Please enter the review to predict the sentiment.</div>
+			</div>
+			<div>
+				<strong>Note:</strong>
+				<div class="text-center">
+					<p>The model is trained on amazon furniture product review corpus. So, the app works better on furniture product reviews.</p>
+				</div>
+			</div>
+			<button type="submit" class="btn btn-primary" value="submit">Submit</button>
+		</form>
+	</div>
+	
+	<div class="text-center">
+		<h2>{{prediction}}</h2>
+	</div>
+	
+	
+	
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+    <script>
+        var form = document.querySelector('.needs-validation');
+
+        form.addEventListener('submit', function(event) {
+            if (form.checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+            form.classList.add('was-validated');
+        })
+    </script>
+</body>
+
+</html>
